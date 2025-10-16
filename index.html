@@ -10,39 +10,64 @@
         <h1 style="color: #667eea; margin-bottom: 20px;">CSE STUDENT PORTAL</h1>
         
   
-        <form action="login.html">
-            <div style="margin-bottom: 15px;">
-                <label>Username:</label><br>
-                <input type="text" required 
-                       style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <label>Email:</label><br>
-                <input type="email" required 
-                       style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <label>Password:</label><br>
-                <input type="password" required 
-                       style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-          
-            <div style="margin-bottom: 15px;">
-                <label>confirm password</label><br>
-                <input type="password" required 
-                       style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-            
-            <button type="submit" 
-                    style="background-color: #667eea; color: white; width: 100%; padding: 10px; border: none; border-radius: 5px; margin-top: 10px; cursor: pointer;"
-                    onMouseOver="this.style.backgroundColor='#5a6fd8'"
-                    onMouseOut="this.style.backgroundColor='#667eea'">
-                Sign Up
-            </button>
-        </form>
-        
+       <form id="signupForm">
+  <div style="margin-bottom: 15px;">
+      <label>Username:</label><br>
+      <input type="text" name="username" required 
+             style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+  </div>
+  
+  <div style="margin-bottom: 15px;">
+      <label>Email:</label><br>
+      <input type="email" name="email" required 
+             style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+  </div>
+  
+  <div style="margin-bottom: 15px;">
+      <label>Password:</label><br>
+      <input type="password" name="password" required 
+             style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+  </div>
+
+  <div style="margin-bottom: 15px;">
+      <label>Confirm Password:</label><br>
+      <input type="password" name="confirmPassword" required 
+             style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px;">
+  </div>
+
+  <button type="submit" 
+          style="background-color: #667eea; color: white; width: 100%; padding: 10px; border: none; border-radius: 5px; margin-top: 10px; cursor: pointer;"
+          onMouseOver="this.style.backgroundColor='#5a6fd8'"
+          onMouseOut="this.style.backgroundColor='#667eea'">
+      Sign Up
+  </button>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw9ucoElsXP6-LJYunXPptquo_FbhGM4r8sU0HccEjAsPBveJ1q-E-ZETevSsQN-3BZ/exec';
+
+  document.getElementById('signupForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = {
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      confirmPassword: e.target.confirmPassword.value
+    };
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      alert("✅ Sign up successful!");
+      window.location.href = "login.html";
+    })
+    .catch(error => alert("❌ Error: " + error.message));
+  });
+</script>
+
         <div style="margin: 20px 0; color: #777; border-top: 1px solid #eee; padding-top: 15px;">
             Or sign up with
         </div>
